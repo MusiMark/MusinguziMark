@@ -1,0 +1,17 @@
+{
+    "S001": {
+        "Address": "Kampala",
+        "Contact": "0701234567",
+        "Program": "Computer Science"
+    },
+    "S002": {
+        "Address": "Entebbe",
+        "Contact": "0787654321",
+        "Program": "Information Technology"
+    },
+    "S003": {
+        "Address": "Jinja",
+        "Contact": "0755555555",
+        "Program": "Software Engineering"
+    }
+}
