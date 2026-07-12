@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h1{
+            margin-bottom: 20px;
+        }
+
+        nav{
+            margin-bottom: 30px;
+        }
+
+        nav a{
+            text-decoration: none;
+            color: #0066cc;
+            margin-right: 15px;
+        }
+
+        nav a:hover{
+            text-decoration: underline;
+        }
+
+        form{
+            max-width: 300px;
+        }
+
+        label{
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button{
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover{
+            background: #0052a3;
+        }
+
+        .error{
+            color: #d32f2f;
+            background: #ffe6e6;
+            border: 1px solid #d32f2f;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+    <nav>
+        <a href="http://localhost:5000/">Home</a>
+        <a href="http://localhost:5000/about/user_name">About</a>
+        <a href="http://localhost:5000/myStory/text">My Story</a>
+        <a href="http://localhost:5000/contact">Contact</a>
+        <a href="http://localhost:5000/login">Log In</a>
+    </nav>
+
+    {% if error %}
+        <p class="error">{{error}}</p>
+    {% endif %}
+
+    {% if success %}
+        <h2>{{success}}</h2>
+    {% else %}
+        <form method="post">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                required
+            >
+
+            <button type="submit">Log In</button>
+        </form>
+    {% endif %}
+
+</body>
+</html>
