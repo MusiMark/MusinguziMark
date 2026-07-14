@@ -96,7 +96,10 @@ def update_record(registration_number, update):
     except Exception as e: 
         db.session.rollback()
         return False, f"Database error:{str(e)}"  
-    
+
+# GET all deleted students
+def get_all_deleted_students():
+    return Student.query.filter_by(is_active=False).all() 
     
 # Hard Delete
 def hard_delete(registration_number):

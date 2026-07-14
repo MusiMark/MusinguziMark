@@ -39,8 +39,12 @@
                                 <td>{{ student.programme }}</td>
                                 <td>{{ student.registration_date.strftime('%Y-%m-%d') }}</td>
                                 <td>
-                                    <a href="" 
-                                       class="btn btn-small btn-delete">Permanent Delete</a>
+                                    <form method="post">
+                                        <input type="hidden" name="registration_number" value="{{student.registration_number}}">
+                                        <button class="btn btn-small btn-delete" type="submit">Permanent Delete</button>
+                                    </form>
+                                    <!-- <a href="" 
+                                      class="btn btn-small btn-delete" >Permanent Delete</a> -->
                                 </td>
                             </tr>
                         {% endfor %}
@@ -53,8 +57,8 @@
             </div>
         {% else %}
             <div class="empty-state">
-                <p>No students registered yet.</p>
-                <a href="{{ url_for('register') }}" class="btn btn-primary">Register First Student</a>
+                <p>No students deleted yet.</p>
+                <a href="{{ url_for('students_list') }}" class="btn btn-primary">Return to Student's List</a>
             </div>
         {% endif %}
     </section>

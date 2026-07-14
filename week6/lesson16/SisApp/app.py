@@ -1,6 +1,6 @@
 # app.py - Main Application
 from flask import Flask, render_template, request, redirect, url_for, flash
-from database import init_db, add_student, get_all_students, get_student_by_name,get_student_by_id,update_record,soft_delete
+from database import init_db, add_student, get_all_students, get_student_by_name,get_student_by_id,get_all_deleted_students,update_record,soft_delete,hard_delete
 from models import db, Student
 
 app = Flask(__name__)
@@ -97,7 +97,7 @@ def update_student(id):
         flash('Student not found!', 'error')
         return redirect(url_for('students_list'))
 
-@app.route('/delete/<id>', methods=['GET', 'POST'])
+@app.route('/delete/<id>')
 def delete_student(id):
     student = get_student_by_id(id)
 
@@ -114,6 +114,24 @@ def delete_student(id):
     else:
         flash('Student not found!', 'error')
         return redirect(url_for('students_list'))
+    
+@app.route('/students/deleted', methods=['GET', 'POST'])
+def deleted_list():
+    all_students = get_all_deleted_students()
+
+    if request.method == 'POST':
+        registration_number = request.form.get('registration_number', '').strip()
+
+        success,message = hard_delete(registration_number)
+
+        if success:
+            flash(message, 'success')
+            return redirect(url_for('deleted_list'))
+        else:
+            flash(message, 'error')
+        return redirect(url_for('deleted_list'))
+
+    return render_template('hard_delete.html', students=all_students)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

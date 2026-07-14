@@ -8,6 +8,7 @@
             <h2>📋 Registered Students</h2>
             <div class="list-actions">
                 <a href="{{ url_for('register') }}" class="btn btn-primary">+ Register New</a>
+                <a href="{{ url_for('deleted_list') }}" class="btn btn-primary">♻️ Deleted Students</a>
                 <form action="{{ url_for('search_students') }}" method="GET" class="search-form">
                     <input type="text" name="q" placeholder="Search by name..." value="{{ search_term if search_term else '' }}">
                     <button type="submit" class="btn btn-secondary">Search</button>
